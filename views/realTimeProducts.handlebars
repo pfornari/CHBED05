@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Productos en Tiempo Real</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { const socket = io();
+      socket.on('updateProducts', (products) => { const productsList =
+      document.getElementById('productsList'); productsList.innerHTML = '';
+      products.forEach(product => { const li = document.createElement('li');
+      li.textContent = `${product.title} - ${product.price}`;
+      productsList.appendChild(li); }); });
+    </script>
+  </head>
+  <body>
+    <h1>Productos en Tiempo Real</h1>
+    <ul id="productsList">
+      {{#each products}}
+        <li>{{this.title}} - {{this.price}}</li>
+      {{/each}}
+    </ul>
+  </body>
+</html>

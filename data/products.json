@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "title": "Laptop Gamer",
+    "price": 1200
+  },
+  {
+    "id": "2",
+    "title": "Smartphone Pro",
+    "price": 800
+  },
+  {
+    "id": "3",
+    "title": "Smartwatch Moderno",
+    "price": 350
+  },
+  {
+    "id": "4",
+    "title": "Auriculares Bluetooth",
+    "price": 150
+  },
+  {
+    "id": "5",
+    "title": "Cámara Digital",
+    "price": 500
+  }
+]

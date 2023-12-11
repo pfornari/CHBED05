@@ -1,27 +1,29 @@
 [
   {
-    "id": "1",
-    "title": "Laptop Gamer",
-    "price": 1200
+    "id": 1,
+    "title": "Cafetera Eléctrica",
+    "description": "Cafetera eléctrica con capacidad para 12 tazas, color negro",
+    "price": 45.99,
+    "thumbnail": "../imagen/cafetera.jpg",
+    "code": "CAF1234",
+    "stock": 20
   },
   {
-    "id": "2",
-    "title": "Smartphone Pro",
-    "price": 800
+    "id": 2,
+    "title": "Licuadora",
+    "description": "Licuadora de 5 velocidades, color blanco",
+    "price": 35.5,
+    "thumbnail": "../imagen/licuadora.jpg",
+    "code": "LIC5678",
+    "stock": 15
   },
   {
-    "id": "3",
-    "title": "Smartwatch Moderno",
-    "price": 350
-  },
-  {
-    "id": "4",
-    "title": "Auriculares Bluetooth",
-    "price": 150
-  },
-  {
-    "id": "5",
-    "title": "Cámara Digital",
-    "price": 500
+    "id": 3,
+    "title": "Tostadora",
+    "description": "Tostadora eléctrica para dos rebanadas, color plata",
+    "price": 22.3,
+    "thumbnail": "../imagen/tostadora.jpg",
+    "code": "TOS9012",
+    "stock": 25
   }
 ]

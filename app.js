@@ -4,17 +4,33 @@ const { Server } = require("socket.io");
 const { engine } = require("express-handlebars");
 const fs = require("fs").promises;
 const path = require("path");
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const productController = require("./controllers/productController");
+const productsFilePath = path.join(__dirname, "/data/products.json");
 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
-const productsFilePath = path.join(__dirname, "/data/products.json");
 
 const {
   newProduct,
   updateProduct,
   deleteProduct,
 } = require("./views/productController");
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/products", productRoutes);
+app.use("/api/carts", cartRoutes);
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.render("home", { layout: false });
+});
+
+app.get("/realtimeproducts", (req, res) => {
+  res.render("realTimeProducts", { layout: false });
+});
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
@@ -39,12 +55,23 @@ app.get("/realtimeproducts", async (req, res) => {
   res.render("realTimeProducts", { products });
 });
 
-httpServer.listen(8080, () => {
-  console.log("Server is running on http://localhost:8080");
+const PORT = 8080;
+httpServer.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("Un cliente se ha conectado");
+
+  socket.on("addProduct", async (productData) => {
+    try {
+      const newProduct = await productController.addProduct(productData);
+      const products = await productController.getProducts();
+      io.emit("updateProducts", products);
+    } catch (error) {
+      socket.emit("error", error.message);
+    }
+  });
 
   socket.on("newProduct", async (product) => {
     const products = await readProductsFile();

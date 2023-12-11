@@ -2,21 +2,56 @@
   <head>
     <title>Productos en Tiempo Real</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => { const socket = io();
-      socket.on('updateProducts', (products) => { const productsList =
-      document.getElementById('productsList'); productsList.innerHTML = '';
-      products.forEach(product => { const li = document.createElement('li');
-      li.textContent = `${product.title} - ${product.price}`;
-      productsList.appendChild(li); }); });
-    </script>
+    <script src="/js/realTimeProducts.js"></script>
   </head>
   <body>
     <h1>Productos en Tiempo Real</h1>
+    <form id="newProductForm">
+      <input
+        type="text"
+        id="title"
+        placeholder="Nombre del producto"
+        required
+      />
+      <input type="number" id="price" placeholder="Precio" required />
+      <input type="text" id="description" placeholder="Descripción" />
+      <input type="text" id="code" placeholder="Código del producto" />
+      <input type="number" id="stock" placeholder="Stock" />
+      <input type="text" id="category" placeholder="Categoría" />
+      <input
+        type="text"
+        id="thumbnails"
+        placeholder="URLs de imágenes (separadas por coma)"
+      />
+      <button type="submit">Agregar Producto</button>
+    </form>
+
+    <form id="updateProductForm">
+      <input type="text" id="updateId" placeholder="ID del producto" required />
+      <input type="text" id="updateTitle" placeholder="Nuevo nombre" />
+      <input type="number" id="updatePrice" placeholder="Nuevo precio" />
+      <input
+        type="text"
+        id="updateDescription"
+        placeholder="Nueva descripción"
+      />
+      <input type="text" id="updateCode" placeholder="Nuevo código" />
+      <input type="number" id="updateStock" placeholder="Nuevo stock" />
+      <input type="text" id="updateCategory" placeholder="Nueva categoría" />
+      <input
+        type="text"
+        id="updateThumbnails"
+        placeholder="Nuevas URLs de imágenes (separadas por coma)"
+      />
+      <button type="submit">Actualizar Producto</button>
+    </form>
+
+    <form id="deleteProductForm">
+      <input type="text" id="deleteId" placeholder="ID del producto" required />
+      <button type="submit">Eliminar Producto</button>
+    </form>
+
     <ul id="productsList">
-      {{#each products}}
-        <li>{{this.title}} - {{this.price}}</li>
-      {{/each}}
     </ul>
   </body>
 </html>

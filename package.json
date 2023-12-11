@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Una tienda en tiempo real con Node.js, Express, Socket.io y Handlebars",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "JFF",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^7.1.2",
+    "socket.io": "^4.0.0",
+    "uuid": "^8.3.2"
+  }
+}
